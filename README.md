@@ -4,21 +4,25 @@ yiismarty
 various plugins for the smarty templating engine (v 3.1.12) suitable for Yii MVC framework (v 1.1.12...)
 
 Adds:
+  {createUrl route="..." param1="..." param2="..."}
+  Invokes $controller-&gt;createUrl($route,$paramsHash) where the controller
+  object is set automagically by the Yii smarty extension.
+
   {coreScript name="jquery"}
-  Invokes Yii::app()->clientScript->registerCoreScript($name)
+  Invokes Yii::app()-&gt;clientScript-&gt;registerCoreScript($name)
 
   {css id="inline-css-1"}
   .foo {
       text-decoration: blink;
   }
   {/css}
-  Invokes Yii::app()->clientScript->registerCss().
+  Invokes Yii::app()-&gt;clientScript-&gt;registerCss().
 
   {script id="inline-jscript-1"}
   var foo = Math.PI;
   alert("Hello, foo!");
   {/css}
-  Invokes Yii::app()->clientScript->registerScript().  Supports an optional
+  Invokes Yii::app()-&gt;clientScript-&gt;registerScript().  Supports an optional
   position parameter.  See CClientScript::registerScript().
 
   {headerTag id="shader-vs" type="x-shader/x-vertex"}
@@ -26,18 +30,18 @@ Adds:
   {/headerTag}
   I've customized ClientScript in my Yii-derived framework to support
   custom tags; this generates 
-  <script id="shader-vs" type="x-shader/x-vertex"> ... </script>
-  in the <head>...</head> section.  You'll want to remove
+  &lt;script id="shader-vs" type="x-shader/x-vertex"&gt; ... &lt;/script&gt;
+  in the &lt;head&gt;...&lt;/head&gt; section.  You'll want to remove
   block.headerTag.php or extend CClientScript to support registerHeaderTag.
 
   {scriptFile relativeUrl="assets/js/foo.js"}
-  Invokes Yii::app()->clientScript->registerScriptFile.  It supports either
+  Invokes Yii::app()-&gt;clientScript-&gt;registerScriptFile.  It supports either
   relativeUrl or absoluteUrl.  AbsoluteUrl is passed unmolested to
   registerScriptFile.  When used in a module, e.g.,
   modules/foo/views/site/index.tpl, with a relative url assets/js/foomodule.js,
-  relativeUrl will helpfully use Yii::app()->getAssetManager()->publish() to
+  relativeUrl will helpfully use Yii::app()-&gt;getAssetManager()-&gt;publish() to
   automatically publish modules/foo/assets/js/foomodule.js to
-  assets/<8-digit-id>/js/foomodule.js.  You can disable this behaviour by
+  assets/<8-digit-id&gt;/js/foomodule.js.  You can disable this behaviour by
   setting 'nopublish' to true; in this case, the method will prepend the
   module name to the relative url, e.g., foo/assets/js/foomodule.js.  You can
   disable all of this behaviour by setting nomodule to true.
@@ -46,7 +50,7 @@ Adds:
   See CClientScript::registerScriptFile()
 
   {cssFile relativeUrl="assets/css/foo.css"}
-  Invokes Yii::app()->clientScript->registerCssFile.  It employs the same
+  Invokes Yii::app()-&gt;clientScript-&gt;registerCssFile.  It employs the same
   publishing logic described above.
 
   Rather than supporting a position parameter, it supports a media parameter.
