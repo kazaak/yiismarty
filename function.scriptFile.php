@@ -29,7 +29,7 @@ function smarty_function_scriptFile($params,&$smarty) {
                 );
             }
             else {
-                $relativeUrl = "{$controller->module->id}/{$relativeUrl}";
+                $relativeUrl = "assets/{$controller->module->id}/{$relativeUrl}";
             }
         }
 
