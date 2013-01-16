@@ -5,52 +5,52 @@ various plugins for the smarty templating engine (v 3.1.12) suitable for Yii MVC
 
 Adds:
 <ul>
-<li><code>
+<li><pre>
   {createUrl route="..." param1="..." param2="..."}
-  </code>
+  </pre>
   <p>
   Invokes $controller-&gt;createUrl($route,$paramsHash) where the controller
   object is set automagically by the Yii smarty extension.
   </p>
 </li>
 
-<li><code>
+<li><pre>
   {coreScript name="jquery"}
-  </code>
+  </pre>
   <p>
   Invokes Yii::app()-&gt;clientScript-&gt;registerCoreScript($name)
   </p>
 </li>
 
-<li><code>
+<li><pre>
   {css id="inline-css-1"}
   .foo {
       text-decoration: blink;
   }
   {/css}
-  </code>
+  </pre>
   <p>
   Invokes Yii::app()-&gt;clientScript-&gt;registerCss().
   </p>
 </li>
 
-<li><code>
+<li><pre>
   {script id="inline-jscript-1"}
   var foo = Math.PI;
   alert('Hello, ' + foo + '!');
   {/script}
-  </code>
+  </pre>
   <p>
   Invokes Yii::app()-&gt;clientScript-&gt;registerScript().  Supports an
   optional position parameter.  See CClientScript::registerScript().
   </p>
 </li>
 
-<li><code>
+<li><pre>
   {headerTag id="shader-vs" type="x-shader/x-vertex"}
   // webgl shader program here :P
   {/headerTag}
-  </code>
+  </pre>
   <p>
   I've customized ClientScript in my Yii-derived framework to support
   custom tags; this generates 
@@ -65,9 +65,9 @@ Adds:
   </p>
 </li>
 
-<li><code>
+<li><pre>
   {scriptFile relativeUrl="/js/foo.js"}
-  </code>
+  </pre>
   <p>
   Invokes Yii::app()-&gt;clientScript-&gt;registerScriptFile.  It supports
   either relativeUrl or absoluteUrl.  AbsoluteUrl is passed unmolested to
@@ -87,9 +87,9 @@ Adds:
   </p>
 </li>
 
-<li><code>
+<li><pre>
   {cssFile relativeUrl="assets/css/foo.css"}
-  </code>
+  </pre>
   <p>
   Invokes Yii::app()-&gt;clientScript-&gt;registerCssFile.  It employs the same
   publishing logic described above.
@@ -114,9 +114,9 @@ seems to require putting this under
 protected/extensions/yiiext/renderers/smarty; so to add the yiiext smarty
 renderer to my project, I did this:
 
-<code>
+<pre>
 $ git submodule add git://github.com/yiiext/smarty-renderer.git protected/extensions/yiiext/renderers/smarty
-</code>
+</pre>
 
 Next I put smarty in protected/vendors/Smarty, e.g., Smarty.class.php et. al.
 should be in that directory.
@@ -134,6 +134,6 @@ NOTE pluginsDir change from extension documentation.  The extension itself adds
 ext.Smarty.plugins, which for me doesn't exist, so that's where I have this
 project, e.g.:
 
-<code>
+<pre>
 $ git submodule add https://github.com/kazaak/yiismarty.git protected/extensions/Smarty/plugins
-</code>
+</pre>
