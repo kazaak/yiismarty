@@ -1,6 +1,6 @@
 <?php
 
-function smarty_block_headerTag($params,$content,$template,$open) {
+function smarty_block_headerTag($params,$content,&$smarty,$open) {
     if($open) {
         // tag opened, nothing to do here
         return;
@@ -30,4 +30,4 @@ ERROR
         $tag = 'script';
     }
     Yii::app()->clientScript->registerHeaderTag($id,$tag,$content,$htmlOptions);
-} // function smarty_block_headerTag($params,$content,$template,&$repeat)
+} // function smarty_block_headerTag($params,$content,&$smarty,$open)

@@ -6,5 +6,5 @@ function smarty_function_coreScript($params,&$smarty) {
     }
     $clientScript = Yii::app()->clientScript;
     $clientScript->registerCoreScript($params['name']);
-} // function smarty_function_scriptFile($params,&$smarty)
+} // function smarty_function_coreScript($params,&$smarty)
 

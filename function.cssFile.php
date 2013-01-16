@@ -1,22 +1,14 @@
 <?php
-/**
- * Invokes Yii::app()->clientScript->registerScriptFile
- *
- * Syntax:
- * {scriptFile absoluteUrl="..."}
- * {scriptFile relativeUrl="..."}
- * {scriptFile ... position="ClientScript::POS_HEAD"}
- */
 
-function smarty_function_scriptFile($params,&$smarty) {
+function smarty_function_cssFile($params,&$smarty) {
     if((empty($params['relativeUrl']) && empty($params['absoluteUrl']))
      &&(!empty($params['relativeUrl']) && !empty($params['absoluteUrl']))) {
         throw new CException(Yii::t('yiiext','You must specify one of relativeUrl or absoluteUrl, but not both'));
     }
     $clientScript = Yii::app()->clientScript;
-    $position = NULL;
-    if(!empty($params['position'])) {
-        $position = $params['position'];
+    $media = '';
+    if(!empty($params['media'])) {
+        $media = $params['media'];
     }
     if(!empty($params['relativeUrl'])) {
         $relativeUrl = $params['relativeUrl'];
@@ -39,11 +31,11 @@ function smarty_function_scriptFile($params,&$smarty) {
             $url = Yii::app()->request->baseUrl.$relativeUrl;
         }
 
-        $clientScript->registerScriptFile($url,$position);
+        $clientScript->registerCssFile($url,$position);
     }
     else {
-        $clientScript->registerScriptFile(
-            $params['absoluteUrl'],$position
+        $clientScript->registerCssFile(
+            $params['absoluteUrl'],$media
         );
     }
 } // function smarty_function_scriptFile($params,&$smarty)
