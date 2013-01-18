@@ -31,7 +31,7 @@ function smarty_function_cssFile($params,&$smarty) {
             $url = Yii::app()->request->baseUrl.$relativeUrl;
         }
 
-        $clientScript->registerCssFile($url,$position);
+        $clientScript->registerCssFile($url,$media);
     }
     else {
         $clientScript->registerCssFile(

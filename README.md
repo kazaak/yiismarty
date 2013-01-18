@@ -82,6 +82,11 @@ Adds:
   </p>
 
   <p>
+  When not used in a module context, or when nomodule is set to true,
+  this function appends relativeUrl to Yii::app()-&gt;request-&gt;baseUrl.
+  </p>
+
+  <p>
   You may also specify a position parameter.
   See CClientScript::registerScriptFile()
   </p>
@@ -97,9 +102,40 @@ Adds:
 
   <p>
   Rather than supporting a position parameter, it supports a media parameter.
-  See CClientScript::registerCssFile()
+  See CClientScript::registerCssFile().
   </p>
 </li>
+
+<li><pre>
+  {menu}
+    {menuItem label="..." url="..." visible="..."}
+    {menuItem label="..." url="..." visible="..."}
+  {/menu}
+  </pre>
+
+  <p>
+  Populates the $this-&gt;menu array of the controller with the specified
+  menu items.  I've extended CMenu to support widget="<class alias>" and an
+  array of options passed to the widget.  So you can set widget="<class alias>"
+  in {menuItem ...} and any parameters other than label, url, and visible are
+  added to a variable called widgetOptions.
+  </p>
+
+  <p>
+  To be clear, this is adding associative arrays to $this-&gt;menu in the
+  current controller, set via the Yii smarty extension.  So it allows you to
+  do what would equivalently be the following in the view file:
+  <code>
+  $this-&gt;menu = array(
+    array('label' => 'home',url='/')
+   ,array('visible' => 1,'widget' => 'application.components.CustomButton'
+         ,'buttonLabel' => 'hello, world!')
+  );
+  </code>
+  </p>
+
+</li>
+
 </ul>
 
 These are the plugins I've created to further incorporate the Smarty PHP
