@@ -107,6 +107,22 @@ Adds:
 </li>
 
 <li><pre>
+  &lt;img src="{assetFile relativeUrl="/img/redx.png"}"/&gt;
+  </pre>
+  <p>
+  This is a convenience method for generating asset urls.  It supports
+  relativeUrl and absoluteUrl; absoluteUrl simply echos the supplied url.
+  In a module context using relativeUrl, it will use CAssetManager to
+  publis the file using Yii::getPathOfAlias on "&lt;modulename&gt;.assets",
+  appending the supplied url to that result and passing it to publish.  You can
+  prevent this by passing the nopublish parameter; in that case, the relativeUrl
+  is appended to "assets/<modulename>/".  You can prevent this by setting the
+  nomodule parameter.  Unless the relativeUrl is published using getPathOfAlias,
+  it is appended to Yii::app()-&gt;request-&gt;baseUrl.
+  </p>
+</li>
+
+<li><pre>
   {menu}
     {menuItem label="..." url="..." visible="..."}
     {menuItem label="..." url="..." visible="..."}
