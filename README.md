@@ -215,6 +215,12 @@ Adds:
 
 </li>
 
+<li><pre>
+  {yiiclassref class="CAssetManager"}
+  </pre>
+
+  <p>Adds a CHtml::link to the specified Yii class.  A little cheeky.</p>
+
 </ul>
 
 These are the plugins I've created to further incorporate the Smarty PHP
