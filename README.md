@@ -82,8 +82,11 @@ Adds:
   </p>
 
   <p>
-  When not used in a module context, or when nomodule is set to true,
-  this function appends relativeUrl to Yii::app()-&gt;request-&gt;baseUrl.
+  When not used in a module context, the module publishes the url created by appending $relativeUrl to Yii::getPathOfAlias("application.assets").  You can disable this behaviour by setting nopublish to true.
+  </p>
+
+  <p>
+  When nomodule is set to true, or when not in a module context and nopublish is set to true, this function appends relativeUrl to Yii::app()-&gt;request-&gt;baseUrl.
   </p>
 
   <p>

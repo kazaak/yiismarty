@@ -1,46 +1,15 @@
 <?php
 
+require_once dirname(__FILE__).'/determineUrl.php';
+
 function smarty_function_cssFile($params,&$smarty) {
-    if((empty($params['relativeUrl']) && empty($params['absoluteUrl']))
-     &&(!empty($params['relativeUrl']) && !empty($params['absoluteUrl']))) {
-        throw new CException(Yii::t('yiiext','You must specify one of relativeUrl or absoluteUrl, but not both'));
-    }
-    $clientScript = Yii::app()->clientScript;
     $media = '';
     if(!empty($params['media'])) {
         $media = $params['media'];
     }
-    if(!empty($params['relativeUrl'])) {
-        $relativeUrl = $params['relativeUrl'];
-        $controller = $smarty->tpl_vars['this']->value;
-        if(isset($controller->module) && empty($params['nomodule'])) {
-            if(empty($params['nopublish'])) {
-                $hashByName = false;
-                if(!empty($params['hasbyname'])) {
-                    $hashByName = true;
-                }
-                $url = Yii::app()->getAssetManager()->publish(
-                    Yii::getPathOfAlias("{$controller->module->id}.assets")
-                   .$params['relativeUrl']
-                   ,$hashByName
-                );
-            }
-            else {
-                $relativeUrl = "assets/{$controller->module->id}/{$relativeUrl}";
-            }
-        }
 
-        if(!isset($url)) {
-            // either we're not in a module or they don't want to go the publish
-            //  route
-            $url = Yii::app()->request->baseUrl.$relativeUrl;
-        }
+    $url = determineUrl($params,$smarty);
 
-        $clientScript->registerCssFile($url,$media);
-    }
-    else {
-        $clientScript->registerCssFile(
-            $params['absoluteUrl'],$media
-        );
-    }
+    $clientScript = Yii::app()->clientScript;
+    $clientScript->registerCssFile($url,$media);
 } // function smarty_function_scriptFile($params,&$smarty)

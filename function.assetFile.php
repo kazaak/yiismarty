@@ -7,40 +7,10 @@
  * {assetFile relativeUrl="..."}
  */
 
-function smarty_function_assetFile($params,&$smarty) {
-    if((empty($params['relativeUrl']) && empty($params['absoluteUrl']))
-     &&(!empty($params['relativeUrl']) && !empty($params['absoluteUrl']))) {
-        throw new CException(Yii::t('yiiext','You must specify one of relativeUrl or absoluteUrl, but not both'));
-    }
-    if(!empty($params['relativeUrl'])) {
-        $relativeUrl = $params['relativeUrl'];
-        $controller = $smarty->tpl_vars['this']->value;
-        if(isset($controller->module) && empty($params['nomodule'])) {
-            if(empty($params['nopublish'])) {
-                $hashByName = false;
-                if(!empty($params['hasbyname'])) {
-                    $hashByName = true;
-                }
-                $url = Yii::app()->getAssetManager()->publish(
-                    Yii::getPathOfAlias("{$controller->module->id}.assets")
-                   .$params['relativeUrl']
-                   ,$hashByName
-                );
-            }
-            else {
-                $relativeUrl = "assets/{$controller->module->id}/{$relativeUrl}";
-            }
-        }
+require_once dirname(__FILE__).'/determineUrl.php';
 
-        if(!isset($url)) {
-            // either we're not in a module or they don't want to go the publish
-            //  route
-            $url = Yii::app()->request->baseUrl.$relativeUrl;
-        }
-    }
-    else {
-        $url = $params['absoluteUrl'];
-    }
+function smarty_function_assetFile($params,&$smarty) {
+    $url = determineUrl($params,$smarty);
 
     echo $url;
 } // function smarty_function_assetFile($params,&$smarty)
