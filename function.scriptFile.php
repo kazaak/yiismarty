@@ -23,9 +23,14 @@ function smarty_function_scriptFile($params,&$smarty) {
         $controller = $smarty->tpl_vars['this']->value;
         if(isset($controller->module) && empty($params['nomodule'])) {
             if(empty($params['nopublish'])) {
+                $hashByName = false;
+                if(!empty($params['hasbyname'])) {
+                    $hashByName = true;
+                }
                 $url = Yii::app()->getAssetManager()->publish(
                     Yii::getPathOfAlias("{$controller->module->id}.assets")
                    .$params['relativeUrl']
+                   ,$hashByName
                 );
             }
             else {

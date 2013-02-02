@@ -152,6 +152,69 @@ Adds:
 
 </li>
 
+<li><pre>
+  {jSmart}
+  {include file="jsmart-template.tpl"}
+  {/jSmart}
+  </pre>
+
+  <p>
+  Sets the left and right delimiters on the smarty template to {{ and }}.  This allows processing of templates meant for use by jSmart.  I.e., the template can use {{ and }} to do some processing on the server side while leaving {...} blocks to be resolved by jSmart on the client side.
+  </p>
+
+  <p>
+  For instance, the jsmart-template.tpl reference above can use:
+  <code>
+  {foreach $posts as $post}
+  <article>
+  <header>
+  <h1>{{t cat="app" text="Title:"}}{$post.title}</h1>
+  </header>
+  {$post.content}
+  </article>
+  {/foreach}
+  </code>
+  This way, the server side can process the t function and leave {$post.title} to the client side.
+  </p>
+
+</li>
+
+<li><pre>
+  {breadcrumbs}
+  {breadcrumbs var='Dominion' value={createUrl route="site/index"}}
+  <pre>
+
+  <p>I override CWebModule to pass a $breadcrumbs parameter; specifically, I override onBeginRequest to set the modules for my application, like this:
+  <code>
+   'onBeginRequest' => function() {
+        // this = ugly :(  we can't do this above because Yii::app() isn't yet
+        //  initialized
+        // NOTE setModule will merge the module configs
+        Yii::app()->setModules(array(
+            'dominion' => array(
+                'breadcrumbs' => array(
+                    'Games' => Yii::app()->createUrl('game/index')
+                )
+            )
+  </code>
+  i.e., the breadcrumbs parameter available in $module will tell me the path to the module.
+  </p>
+
+  <p>The <code>{breadcrumbs}</code> sets the $controller-&gt;breadcrumbs to $controller-&gt;module-&gt;breadcrumbs.  The second bit, <code>{breadcrumbs var='Dominion' value={createUrl route="site/index"}}</code> Adds the url specified in value to the text specified by var to $controller-&gt;breadcrumbs.
+  </p>
+
+</li>
+
+<li><pre>
+  {plural cat="app" text="player" count={count($players)}}
+  </pre>
+
+  <p>
+  This is a wrapper around the smarty yii extension's {t cat="..." text="..."} function to pluralize the text (using English) before invoking t on the pluralized result.
+  </p>
+
+</li>
+
 </ul>
 
 These are the plugins I've created to further incorporate the Smarty PHP
