@@ -9,4 +9,6 @@ function smarty_function_breadcrumbs($params,&$smarty) {
         return;
     }
     $var = $params['var'];
+    $value = $params['value'];
+    $controller->breadcrumbs[$var] = $value;
 } // function smarty_function_breadcrumbs($params,&$smarty)
