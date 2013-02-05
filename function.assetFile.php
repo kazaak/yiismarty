@@ -23,6 +23,4 @@ function smarty_function_assetFile($params,&$smarty) {
     else {
         echo $params['absoluteUrl'];
     }
-
-    echo $url;
 } // function smarty_function_assetFile($params,&$smarty)
