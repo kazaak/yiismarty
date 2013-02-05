@@ -14,10 +14,10 @@ function smarty_function_assetFile($params,&$smarty) {
         $relativeUrl = $params['relativeUrl'];
         $controller = $smarty->tpl_vars['this']->value;
         if(isset($controller->module) && empty($params['nomodule'])) {
-            echo $controller->module->publishCssFile($relativeUrl,$media);
+            echo $controller->module->publishAssetFile($relativeUrl);
         }
         else {
-            echo Yii::app()->publishCssFile($relativeUrl,$media);
+            echo Yii::app()->publishAssetFile($relativeUrl);
         }
     }
     else {
