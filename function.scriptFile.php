@@ -38,7 +38,7 @@ function smarty_function_scriptFile($params,&$smarty) {
         }
     }
     else {
-        Yii::app()->clientManager->registerScriptFile(
+        Yii::app()->clientScript->registerScriptFile(
             $params['absoluteUrl'],$position
         );
     }
