@@ -12,7 +12,7 @@ function smarty_block_script($params,$content,&$smarty,$open) {
 
     $clientScript = Yii::app()->clientScript;
     $position = NULL;
-    if(!empty($params['position'])) {
+    if(isset($params['position'])) {
         $position = $params['position'];
     }
     $clientScript->registerScript(

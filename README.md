@@ -96,6 +96,15 @@ Adds:
 </li>
 
 <li><pre>
+  {linkTag rel="..." type="..." relativeUrl="assets/css/foo.css"}
+  </pre>
+  <p>
+  Invokes Yii::app()-&gt;clientScript-&gt;registerLinkTag.  It employs the same
+  publishing logic described with {scriptFile ...} above.
+  </p>
+</li>
+
+<li><pre>
   {cssFile relativeUrl="assets/css/foo.css"}
   </pre>
   <p>
