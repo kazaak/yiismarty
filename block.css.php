@@ -7,7 +7,7 @@ function smarty_function_css($params,$content,&$smarty,$open) {
     }
 
     if(empty($params['id'])) {
-        throw new CException(Yii::t('yiiext','You must specify both id'));
+        throw new CException(Yii::t('yiiext','You must specify an id'));
     }
 
     $clientScript = Yii::app()->clientScript;
