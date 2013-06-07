@@ -12,5 +12,10 @@ ERROR
 
     $controller = $smarty->tpl_vars['this']->value;
 
-    echo $controller->createUrl($route,$params);
+    if($controller instanceof CController) {
+        echo $controller->createUrl($route,$params);
+    }
+    else {
+        echo Yii::app()->createUrl($route,$params);
+    }
 } // function smarty_function_createUrl($params,&$smarty)
