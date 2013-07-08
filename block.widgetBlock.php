@@ -12,7 +12,11 @@ function smarty_block_widgetBlock($params,$content,&$smarty,$open) {
         );
     }
     $property = $params['property'];
-    $widget = $smarty->tpl_vars['widget']->value;
+    $widgetName = 'widget';
+    if(array_key_exists('widgetName',$params)) {
+        $widgetName = $params['widgetName'];
+    }
+    $widget = $smarty->tpl_vars[$widgetName]->value;
     if(!empty($params['index'])) {
         if(!isset($widget->$property)) {
             $widget->$property = array();
